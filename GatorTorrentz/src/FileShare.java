@@ -9,20 +9,22 @@ public class FileShare {
 	static boolean handShake1 = false;
 	static int n1Id = 0;
 	static int[] n1List = new int[10];
+	
+	static int serverPort = 6792;
+	static String remoteIp = "192.168.0.10";
+	static int remotePort = 6792;
 
 
 	public static void main(String[] args) throws Exception {
-		int serverPort = 6792;
-		String remoteIp = "localhost";
-		int remotePort = 6799;
-		
+
+		//pavan : 192.168.0.20
 		Server fs = new Server(serverPort);
 		fs.run();
 
 		Thread.sleep(2000);
 		
 		sendHello();
-		BitField.sendByteBitField();
+		//BitField.sendByteBitField();
 		
 	}
 
@@ -46,8 +48,8 @@ public class FileShare {
 
 	public static void sendByte(byte[] pkt)throws Exception
 	{
-		String ip="";
-		int port=6792;
+		String ip=remoteIp;
+		int port=remotePort;
 		@SuppressWarnings("resource")
 		Socket clientSocket = new Socket(ip, port);
 		OutputStream outToServer = clientSocket.getOutputStream();
