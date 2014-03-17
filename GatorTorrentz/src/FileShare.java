@@ -19,6 +19,7 @@ public class FileShare {
 
 		Thread.sleep(2000);
 		
+		sendHello();
 		
 	}
 
@@ -36,15 +37,22 @@ public class FileShare {
 			n1Id = Integer.parseInt(t);
 			handShake1 = true;
 			System.out.println("Shook hands with "+n1Id);
+			
 		}
 	}
 
-	public static void sendHello()throws Exception
+	public static void sendByte(byte[] pkt)throws Exception
 	{
 		String ip="";
 		int port=6792;
 		@SuppressWarnings("resource")
 		Socket clientSocket = new Socket(ip, port);
+		OutputStream outToServer = clientSocket.getOutputStream();
+		outToServer.write(pkt);
+		
+	}
+	public static void sendHello()throws Exception
+	{
 		String sentence = "HELLO";
 		for(int i=0;i<32;i++)
 		{
@@ -52,7 +60,11 @@ public class FileShare {
 		}
 		sentence += peerID;
 		byte[] buff = sentence.getBytes();
-		OutputStream outToServer = clientSocket.getOutputStream();
-		outToServer.write(buff);
+		sendByte(buff);
+	}
+	
+	public static void askFordb()
+	{
+		
 	}
 }
