@@ -22,6 +22,7 @@ public class FileShare {
 		Thread.sleep(2000);
 		
 		sendHello();
+		BitField.sendByteBitField();
 		
 	}
 

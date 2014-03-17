@@ -18,10 +18,8 @@ public class BitField
 		return byteChunk;
 	}
 	public static void sendByteBitField() {
-		// TODO method to send the bitfield message
-	}
-	public static void main(String[] args) {
 		int[] bitArray = new int[10];
-		byte[] dummy2 = arrayToByte(bitArray);
+		byte[] bitFieldByte = arrayToByte(bitArray);
+		FileShare.sendByte(bitFieldByte);
 	}
 }
