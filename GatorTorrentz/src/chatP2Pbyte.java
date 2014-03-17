@@ -77,7 +77,6 @@ class chatServerbyte implements Runnable {
 			ServerSocket welcomeSocket = new ServerSocket(6792);
 			System.out.println("Server Running...");
 			while (true) {
-				// System.out.println("Server part A...");
 				Socket connectionSocket = welcomeSocket.accept();
 				InputStream inFromRemote = connectionSocket.getInputStream();
 				int bytesRead;
