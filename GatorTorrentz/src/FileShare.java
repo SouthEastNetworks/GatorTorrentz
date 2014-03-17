@@ -4,6 +4,8 @@ import java.net.Socket;
 public class FileShare {
 	static int peerID = 1234;
 
+	static int prefNeighbours[] = new int[2];
+	static int allNeighbours[] = new int[10];
 	static boolean handShake1 = false;
 	static int n1Id = 0;
 	static int[] n1List = new int[10];
