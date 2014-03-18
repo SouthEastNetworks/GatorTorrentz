@@ -7,7 +7,7 @@ public class BitField {
 		// TODO add a method in Filecheck to return the array
 		bitArray = Filecheck.getChunkArray();
 		messageLength = bitArray.length;
-		int i = 2;
+		int i = 0;
 		String bitStr = ""+messageLength+messageType;
 		while (i < messageLength) {
 			bitStr += bitArray[i];
