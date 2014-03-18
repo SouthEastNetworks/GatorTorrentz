@@ -48,16 +48,21 @@ public class FileShare {
 		else {
 			String len = ""+(char)rxPkt[0]+(char)rxPkt[1];
 			String type = ""+(char)rxPkt[2];
-			String bitField = "";
-			rcvBitArray = new int[10];
-			int j = 0;
-			for (int i = 3;i < rxPkt.length;i++) {
-				bitField += (char) rxPkt[i];
-				rcvBitArray[j] = (int) rxPkt[i];
-				j++;
+			if (type.equals('5')) {
+				String bitField = "";
+				rcvBitArray = new int[10];
+				int j = 0;
+				for (int i = 3;i < rxPkt.length;i++) {
+					bitField += (char) rxPkt[i];
+					rcvBitArray[j] = (int) rxPkt[i];
+					j++;
+				}
+				System.out.println("Received bitfield");
+				System.out.println("Length: "+len+" Type: "+type+" Message: "+bitField);	
 			}
-			System.out.println("Received bitfield");
-			System.out.println("Length: "+len+" Type: "+type+" Message: "+bitField);
+			else if (type.equals('2')) {
+				System.out.println("Received Interested Message");
+			}
 		}
 	}
 
