@@ -14,6 +14,7 @@ public class FileShare {
 	static String remoteIp = "192.168.0.10";
 	static int remotePort = 6792;
 
+	static int[] rcvBitArray;
 
 	public static void main(String[] args) throws Exception {
 
@@ -26,7 +27,7 @@ public class FileShare {
 		
 		sendHello();
 		BitField.sendByteBitField();
-		
+		Interested.shouldSendInterested();
 	}
 
 	public static void rxPacket(byte[] rxPkt) {
@@ -34,8 +35,8 @@ public class FileShare {
 		for (int i = 0; i < 5; i++) {
 			pktType += (char) rxPkt[i];
 		}
-		System.out.println("Received Packet type:" + pktType);
 		if (pktType.equals("HELLO")) {
+			System.out.println("Received Packet type:" + pktType);
 			String t = "";
 			for (int i = 37; i < 41; i++) {
 				t += (char) rxPkt[i];
@@ -45,11 +46,15 @@ public class FileShare {
 			System.out.println("Shook hands with "+n1Id);
 		}
 		else {
-			String len = ""+rxPkt[0]+rxPkt[1];
-			String type = ""+rxPkt[2];
+			String len = ""+(char)rxPkt[0]+(char)rxPkt[1];
+			String type = ""+(char)rxPkt[2];
 			String bitField = "";
+			rcvBitArray = new int[10];
+			int j = 0;
 			for (int i = 3;i < rxPkt.length;i++) {
 				bitField += (char) rxPkt[i];
+				rcvBitArray[j] = (int) rxPkt[i];
+				j++;
 			}
 			System.out.println("Received bitfield");
 			System.out.println("Length: "+len+" Type: "+type+" Message: "+bitField);
