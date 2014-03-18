@@ -10,7 +10,6 @@ public class Server implements Runnable {
 
 	public Server(int port) {
 		serverPort = port;
-
 	}
 
 	@Override
@@ -38,5 +37,4 @@ public class Server implements Runnable {
 			}
 		}
 	}
-
 }

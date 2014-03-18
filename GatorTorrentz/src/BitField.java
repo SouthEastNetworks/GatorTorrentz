@@ -1,15 +1,15 @@
 public class BitField {
-	int messageLength;
-	int messageType;
+	static int messageLength;
+	static int messageType = 5;
 	int[] bitFieldArray;
 
 	public static byte[] arrayToByte(int[] bitArray) {
 		// TODO add a method in Filecheck to return the array
 		bitArray = Filecheck.getChunkArray();
-		int numParts = bitArray.length;
-		int i = 0;
-		String bitStr = "";
-		while (i < numParts) {
+		messageLength = bitArray.length;
+		int i = 2;
+		String bitStr = ""+messageLength+messageType;
+		while (i < messageLength) {
 			bitStr += bitArray[i];
 			i++;
 		}
