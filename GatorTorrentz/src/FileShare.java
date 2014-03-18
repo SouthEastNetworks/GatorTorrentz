@@ -45,10 +45,10 @@ public class FileShare {
 			System.out.println("Shook hands with "+n1Id);
 		}
 		else {
-			String len = ""+rxPkt[0];
-			String type = ""+rxPkt[1];
+			String len = ""+rxPkt[0]+rxPkt[1];
+			String type = ""+rxPkt[2];
 			String bitField = "";
-			for (int i = 2;i < 12;i++) {
+			for (int i = 3;i < 13;i++) {
 				bitField += (char) rxPkt[i];
 			}
 			System.out.println("Received bitfield");
