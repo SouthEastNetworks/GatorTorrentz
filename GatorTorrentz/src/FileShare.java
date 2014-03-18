@@ -27,10 +27,9 @@ public class FileShare {
 		
 		sendHello();
 		BitField.sendByteBitField();
-		Interested.shouldSendInterested();
 	}
 
-	public static void rxPacket(byte[] rxPkt) {
+	public static void rxPacket(byte[] rxPkt) throws Exception{
 		String pktType = "";
 		for (int i = 0; i < 5; i++) {
 			pktType += (char) rxPkt[i];
@@ -48,20 +47,25 @@ public class FileShare {
 		else {
 			String len = ""+(char)rxPkt[0]+(char)rxPkt[1];
 			String type = ""+(char)rxPkt[2];
-			if (type.equals('5')) {
+			if (type.equals("5")) {
 				String bitField = "";
 				rcvBitArray = new int[10];
 				int j = 0;
-				for (int i = 3;i < rxPkt.length;i++) {
+				for (int i = 3;i < 13;i++) {
 					bitField += (char) rxPkt[i];
-					rcvBitArray[j] = (int) rxPkt[i];
+					char c = (char) rxPkt[i];
+					rcvBitArray[j] = Integer.parseInt("0"+c);
 					j++;
 				}
 				System.out.println("Received bitfield");
-				System.out.println("Length: "+len+" Type: "+type+" Message: "+bitField);	
+				System.out.println("Length: "+len+" Type: "+type+" Message: "+bitField);
+				Interested.shouldSendInterested();
 			}
-			else if (type.equals('2')) {
+			else if (type.equals("2")) {
 				System.out.println("Received Interested Message");
+			}
+			else if (type.equals("3")) {
+				System.out.println("Received Not Interested Message");
 			}
 		}
 	}
